@@ -48,5 +48,10 @@
     return escapeHtml(str).replace(/"/g, '&quot;');
   }
 
-  document.addEventListener('DOMContentLoaded', renderLeaderboard);
+  document.addEventListener('DOMContentLoaded', () => {
+    renderLeaderboard();
+    requestAnimationFrame(() => {
+      document.body.classList.add('loaded');
+    });
+  });
 })();
