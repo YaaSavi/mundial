@@ -1,0 +1,205 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-dark: #0d1b2a;
+  --bg-card: #1b2838;
+  --bg-card-hover: #243447;
+  --accent-gold: #d4af37;
+  --accent-gold-light: #f0d875;
+  --text-primary: #e8eef4;
+  --text-muted: #8b9cad;
+  --border: rgba(212, 175, 55, 0.25);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+  --safe-top: env(safe-area-inset-top);
+  --safe-bottom: env(safe-area-inset-bottom);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  padding-bottom: var(--safe-bottom);
+}
+
+/* Header */
+.header {
+  background: linear-gradient(135deg, var(--bg-card) 0%, #152536 100%);
+  border-bottom: 2px solid var(--border);
+  padding: 1.5rem 1rem calc(1.5rem + var(--safe-top));
+  padding-top: calc(1.25rem + var(--safe-top));
+  text-align: center;
+}
+
+.header-inner {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.trophy {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: clamp(1.75rem, 5vw, 2.25rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+.tagline {
+  margin: 0.25rem 0 0;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+/* Main */
+.main {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 2rem;
+}
+
+.leaderboard {
+  width: 100%;
+}
+
+.leaderboard-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Row = rank + avatar + name + points */
+.leaderboard-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.875rem 1rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.leaderboard-row:focus-within,
+.leaderboard-row:hover {
+  background: var(--bg-card-hover);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .leaderboard-row:hover {
+    transform: translateY(-1px);
+  }
+}
+
+.rank {
+  min-width: 2.25rem;
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-sm);
+}
+
+.rank.top-1 { color: var(--accent-gold); background: rgba(212, 175, 55, 0.2); }
+.rank.top-2 { color: var(--text-muted); background: rgba(200, 200, 200, 0.15); }
+.rank.top-3 { color: #b87333; background: rgba(184, 115, 51, 0.2); }
+
+.player-info {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  min-width: 0;
+}
+
+.player-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 2px solid var(--border);
+}
+
+.player-name {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.points-wrap {
+  text-align: right;
+}
+
+.points-value {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--accent-gold-light);
+  letter-spacing: -0.02em;
+}
+
+.points-label {
+  display: block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-top: 0.1rem;
+}
+
+/* Podium highlight for top 3 */
+.leaderboard-row.top-1 { border-color: rgba(212, 175, 55, 0.5); }
+.leaderboard-row.top-2 { border-color: rgba(200, 200, 200, 0.35); }
+.leaderboard-row.top-3 { border-color: rgba(184, 115, 51, 0.4); }
+
+/* Empty state */
+.leaderboard-empty {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+@media (max-width: 380px) {
+  .leaderboard-row {
+    padding: 0.75rem;
+    gap: 0.75rem;
+  }
+  .player-avatar {
+    width: 42px;
+    height: 42px;
+  }
+  .player-name {
+    font-size: 0.95rem;
+  }
+  .points-value {
+    font-size: 1.2rem;
+  }
+}
