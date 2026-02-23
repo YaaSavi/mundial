@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mundial — Players</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+    <nav class="nav" aria-label="Main">
+      <a href="index.html" class="nav-link">Leaderboard</a>
+      <a href="players.html" class="nav-link nav-link--active">Players</a>
+    </nav>
+    <div class="header-inner">
+      <img src="assets/worldcup-logo.png" alt="FIFA World Cup 2026" class="header-logo" width="80" height="60">
+      <h1>Players</h1>
+      <p class="tagline">Who joined the tournament</p>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="page-content">
+      <p>This World Cup tournament has prizes for 1st, 2nd, and 3rd place.</p>
+    </div>
+    <div class="pot-card">
+      <span class="pot-label">Tournament pot</span>
+      <span id="pot-value" class="pot-value"></span>
+    </div>
+    <section class="joined-section" aria-label="Players who joined">
+      <h2 class="joined-title">Joined</h2>
+      <ul id="joined-list" class="joined-list"></ul>
+    </section>
+  </main>
+
+  <script src="players.js"></script>
+  <script>
+    (function () {
+      function escapeHtml(str) {
+        const div = document.createElement('div');
+        div.textContent = str;
+        return div.innerHTML;
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        var potEl = document.getElementById('pot-value');
+        if (potEl && typeof tournamentPot !== 'undefined') {
+          potEl.textContent = '$' + Number(tournamentPot).toLocaleString();
+        }
+
+        var list = document.getElementById('joined-list');
+        if (list && typeof players !== 'undefined') {
+          list.innerHTML = players
+            .map(function (p) {
+              return '<li class="joined-item">' + escapeHtml(p.name) + '</li>';
+            })
+            .join('');
+        }
+
+        requestAnimationFrame(function () {
+          document.body.classList.add('loaded');
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

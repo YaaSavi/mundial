@@ -1,3 +1,5 @@
+const tournamentPot = 500; // total pot in currency (e.g. dollars)
+
 const players = [
   { name: 'Gladys',      image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Gladys',   points: 94 },
   { name: 'Abigail',     image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Abigail',  points: 88 },
