@@ -131,12 +131,12 @@ body.loaded .leaderboard-row:nth-child(10) { animation-delay: 0.98s; }
   position: absolute;
   right: 1rem;
   top: calc(1rem + var(--safe-top));
-  padding: 0.6rem 1.4rem;
-  border-radius: 999px;
+  padding: 0.45rem 1.1rem;
+  border-radius: var(--radius);
   border: none;
   background: #ffffff;
   color: #000000;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   font-weight: 600;
   cursor: pointer;
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.45);
